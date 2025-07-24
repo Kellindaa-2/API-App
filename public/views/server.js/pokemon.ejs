@@ -9,6 +9,7 @@
 <body>
   <div class="container">
     <a href="/" class="back-link">← Back to search</a>
+    <button class="random-btn" onclick="window.location.href='/random'">Random Pokémon</button>
     
     <div class="pokemon-card">
       <div class="pokemon-header">
@@ -44,6 +45,22 @@
           <span class="detail-label">Abilities:</span>
           <span><%= pokemon.abilities.join(', ') %></span>
         </div>
+        
+        <% if (pokemon.evolutions.length > 1) { %>
+          <div class="detail-row evolutions">
+            <span class="detail-label">Evolutions:</span>
+            <div class="evolution-chain">
+              <% pokemon.evolutions.forEach(pkmn => { %>
+                <a href="/pokemon/<%= pkmn.name %>" class="evolution <%= pkmn.name === pokemon.name ? 'current' : '' %>">
+                  <span class="evolution-name"><%= pkmn.name.charAt(0).toUpperCase() + pkmn.name.slice(1) %></span>
+                </a>
+                <% if (pkmn !== pokemon.evolutions[pokemon.evolutions.length-1]) { %>
+                  <span class="evolution-arrow">→</span>
+                <% } %>
+              <% }); %>
+            </div>
+          </div>
+        <% } %>
         
         <div class="description">
           <p><%= pokemon.description %></p>
