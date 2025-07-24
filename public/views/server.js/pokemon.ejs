@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= pokemon.name %> | Pokédex</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to search</a>
+    
+    <div class="pokemon-card">
+      <div class="pokemon-header">
+        <h1><%= pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) %></h1>
+        <span class="pokemon-id">#<%= pokemon.id.toString().padStart(3, '0') %></span>
+      </div>
+      
+      <div class="pokemon-image">
+        <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %>">
+      </div>
+      
+      <div class="pokemon-details">
+        <div class="detail-row">
+          <span class="detail-label">Type:</span>
+          <div class="types">
+            <% pokemon.types.forEach(type => { %>
+              <span class="type <%= type %>"><%= type %></span>
+            <% }); %>
+          </div>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">Height:</span>
+          <span><%= pokemon.height %> m</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">Weight:</span>
+          <span><%= pokemon.weight %> kg</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">Abilities:</span>
+          <span><%= pokemon.abilities.join(', ') %></span>
+        </div>
+        
+        <div class="description">
+          <p><%= pokemon.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
