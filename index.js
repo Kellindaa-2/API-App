@@ -1,3 +1,6 @@
+const express = require('express');
+const app = express();
+
 document.getElementById('search-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const pokemonName = this.elements['name'].value.trim();
